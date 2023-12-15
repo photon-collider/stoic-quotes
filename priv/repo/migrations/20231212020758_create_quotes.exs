@@ -9,5 +9,7 @@ defmodule StoicQuotes.Repo.Migrations.CreateQuotes do
 
       timestamps()
     end
+
+    create unique_index(:quotes, [:quote], name: :index_for_duplicate_quotes)
   end
 end
