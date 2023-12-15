@@ -37,6 +37,15 @@ defmodule StoicQuotes.Quotes do
   """
   def get_quote!(id), do: Repo.get!(Quote, id)
 
+  def get_random_quote!() do
+    query =
+      from q in Quote,
+        order_by: fragment("RANDOM()"),
+        limit: 1
+
+    Repo.one!(query)
+  end
+
   @doc """
   Creates a quote.
 
