@@ -20,7 +20,6 @@ defmodule StoicQuotesWeb.Router do
     get "/", PageController, :home
   end
 
-  # Other scopes may use custom stacks.
   scope "/api", StoicQuotesWeb do
     pipe_through :api
     get "/quotes", QuotesController, :index
