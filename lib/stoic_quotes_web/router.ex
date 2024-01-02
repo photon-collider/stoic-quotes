@@ -20,10 +20,11 @@ defmodule StoicQuotesWeb.Router do
     get "/", PageController, :home
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", StoicQuotesWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", StoicQuotesWeb do
+    pipe_through :api
+    get "/quotes", QuotesController, :index
+    get "/quotes/random", QuotesController, :show
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:stoic_quotes, :dev_routes) do
