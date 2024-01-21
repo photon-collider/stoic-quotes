@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  phx-web:
+    build: .
+    env_file:
+      - '.env'
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres
+    restart: always
+    networks:
+      - phx_network
+
+  postgres:
+    image: postgres:16.0-alpine
+    env_file:
+      - '.env'
+    volumes:
+      - pg:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - phx_network
+
+
+volumes:
+  pg: {}
+
+networks:
+  phx_network:
+    driver: bridge

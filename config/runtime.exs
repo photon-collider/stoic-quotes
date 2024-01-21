@@ -34,6 +34,7 @@ if config_env() == :prod do
     # ssl: true,
     url: database_url,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+    port: String.to_integer(System.get_env("POSTGRES_PORT", "5432")),
     socket_options: maybe_ipv6
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
@@ -48,8 +49,8 @@ if config_env() == :prod do
       You can generate one by calling: mix phx.gen.secret
       """
 
-  host = System.get_env("PHX_HOST") || "example.com"
-  port = String.to_integer(System.get_env("PORT") || "4000")
+  host = System.get_env("URL_HOST") || "example.com"
+  port = String.to_integer(System.get_env("URL_PORT") || "4000")
 
   config :stoic_quotes, StoicQuotesWeb.Endpoint,
     url: [host: host, port: 443, scheme: "https"],
