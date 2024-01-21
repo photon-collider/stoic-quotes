@@ -3,7 +3,14 @@ defmodule StoicQuotesWeb.PageController do
   alias StoicQuotes.Quotes
 
   def home(conn, _params) do
-    quote_data = Quotes.get_random_quote!()
+    quote_data =
+      case Quotes.get_random_quote() do
+        nil ->
+          %{quote: "No quotes available", author: "N/A", source: "N/A"}
+
+        quote ->
+          quote
+      end
 
     conn
     |> assign(:layout, false)

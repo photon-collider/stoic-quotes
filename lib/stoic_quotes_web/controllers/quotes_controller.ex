@@ -8,7 +8,7 @@ defmodule StoicQuotesWeb.QuotesController do
   end
 
   def show(conn, _params) do
-    quote = %{quote: Quotes.get_random_quote!()}
+    quote = %{quote: Quotes.get_random_quote()}
     render(conn, :show, quote)
   end
 end
